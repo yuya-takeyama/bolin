@@ -23,6 +23,7 @@ module Bolin
         req.add_field 'X-Line-ChannelSecret', @channel_secret
         req.add_field 'X-Line-Trusted-User-With-ACL', @channel_mid
         req.body = message.to_json
+        STDERR.puts req.body
         http.request req
       end
     end
