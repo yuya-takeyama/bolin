@@ -90,7 +90,8 @@ module Bolin
           @bot.process Message.new(JSON.parse(req.body.read))
 
           SUCCESS
-        rescue
+        rescue => e
+          STDERR.puts e
           FAILURE
         end
       else
@@ -172,7 +173,7 @@ module Bolin
     end
 
     def handle(message, match)
-      handler.call(bot, message, match)
+      handler.call(BotWithMessage.new(bot, message), message, match)
     end
   end
 end
