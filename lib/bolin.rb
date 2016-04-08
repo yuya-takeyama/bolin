@@ -55,6 +55,7 @@ module Bolin
     def reply(message)
       message = if message.is_a? String
                   base_message['content'].merge({'message' => message})
+                  base_message
                 elsif message.is_a? Hash
                   base_message.merge(message)
                 end
