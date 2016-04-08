@@ -45,8 +45,6 @@ module Bolin
   end
 
   class BotWithMessage
-    delegate :send_message, to: :bot
-
     def initialize(bot, message)
       @bot = bot
       @message = message
@@ -59,7 +57,7 @@ module Bolin
                   base_message.merge(message)
                 end
 
-      send_message message
+      @bot.send_message message
     end
 
     def base_message
