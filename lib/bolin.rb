@@ -87,7 +87,9 @@ module Bolin
 
       if req.post? && req.path_info == '/callback'
         begin
-          JSON.parse(req.body.read)['results'].each do |result|
+          body = req.body.read
+          STDOUT.puts body
+          JSON.parse(body)['result'].each do |result|
             @bot.process Message.new(result['content'])
           end
 
