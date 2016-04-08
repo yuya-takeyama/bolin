@@ -74,8 +74,8 @@ module Bolin
   end
 
   class Callback
-    SUCCESS = [200, {'Content-Type' => 'text/plain'.freeze, 'Content-Length' => '2'.freeze}.freeze, 'OK'.freeze].freeze
-    FAILURE = [470, {'Content-Type' => 'text/plain'.freeze, 'Content-Length' => '2'.freeze}.freeze, 'NG'.freeze].freeze
+    SUCCESS = [200, {'Content-Type' => 'text/plain'.freeze, 'Content-Length' => '2'.freeze}.freeze, ['OK'.freeze].freeze].freeze
+    FAILURE = [470, {'Content-Type' => 'text/plain'.freeze, 'Content-Length' => '2'.freeze}.freeze, ['NG'.freeze].freeze].freeze
 
     def initialize(bot)
       @bot = bot
