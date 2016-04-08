@@ -1,3 +1,4 @@
+require 'date'
 require 'json'
 require 'net/http'
 require 'bolin/version'
@@ -84,7 +85,7 @@ module Bolin
     def call(env)
       req = Rack::Request.new(env)
 
-      if req.post? && req.path_info = '/callback'
+      if req.post? && req.path_info == '/callback'
         begin
           @bot.process Message.new(JSON.parse(req.body.read))
 
@@ -111,12 +112,12 @@ module Bolin
 
     def initialize(message)
       @id               = message['id']
-      @content_type     = message['content_type']
+      @content_type     = message['contentType']
       @from             = message['from']
-      @created_time     = Time.at(message['created_time']).utc.to_datetime
+      @created_time     = Time.at(message['createdTime']).utc.to_datetime
       @to               = message['to']
-      @to_type          = message['to_type']
-      @content_metadata = message['content_metadata']
+      @to_type          = message['toType']
+      @content_metadata = message['contentMetadata']
       @text             = message['text']
       @location         = message['location']
     end
@@ -155,7 +156,7 @@ module Bolin
 
     def initialize(bot, &block)
       @bot     = bot
-      @handler = handler
+      @handler = block
     end
   end
 
